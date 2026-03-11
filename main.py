@@ -1,6 +1,7 @@
 from src.regex import preparar_regex
 from src.afd_directo import construir_afd_directo
 from src.transiciones import imprimir_tabla_transiciones
+from src.simulacion import simular_afd 
 
 regex = input("Ingrese la expresión regular: ")
 
@@ -39,3 +40,8 @@ for estado, trans in afd["transiciones"].items():
 
 imprimir_tabla_transiciones(afd, alfabeto)
 
+# Ingresar cadena
+cadena = input("\nIngrese una cadena a evaluar: ")
+
+# Simular AFD
+simular_afd(afd, cadena, alfabeto)
