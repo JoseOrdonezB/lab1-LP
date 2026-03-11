@@ -36,7 +36,8 @@ def regex_a_postfijo(regex):
         elif c == ')':
             while pila and pila[-1] != '(':
                 salida.append(pila.pop())
-            pila.pop()
+            if pila:
+                pila.pop()
 
         else:
             while pila and pila[-1] != '(' and precedencia.get(pila[-1],0) >= precedencia.get(c,0):
@@ -57,7 +58,14 @@ def construir_arbol(postfijo):
 
     for c in postfijo:
 
-        if es_simbolo(c):
+        if c == 'ε':
+            nodo = Nodo(c)
+            nodo.nullable = True
+            nodo.firstpos = set()
+            nodo.lastpos = set()
+            pila.append(nodo)
+
+        elif es_simbolo(c):
 
             nodo = Nodo(c, posicion=pos)
             pila.append(nodo)
