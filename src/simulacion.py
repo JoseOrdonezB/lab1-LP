@@ -26,3 +26,21 @@ def simular_afd(afd, cadena, alfabeto):
     else:
         print("\nResultado: CADENA RECHAZADA ❌")
         return False
+    
+def verificar_cadena(afd, cadena, alfabeto):
+
+    estado_actual = afd["estado_inicial"]
+    transiciones = afd["transiciones"]
+    aceptacion = afd["aceptacion"]
+
+    for simbolo in cadena:
+
+        if simbolo not in alfabeto:
+            return False
+
+        if simbolo not in transiciones[estado_actual]:
+            return False
+
+        estado_actual = transiciones[estado_actual][simbolo]
+
+    return estado_actual in aceptacion
